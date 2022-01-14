@@ -42,14 +42,20 @@ class _EmployeeDetailsState extends State<EmployeeDetails> {
     });
   }
 
-  IconData emojiFace(int sleepingTimes) {
-    if (sleepingTimes > 0 && sleepingTimes < 5) {
-      return Icons.favorite;
+  String emojiFace(int sleepingTimes) {
+    if (sleepingTimes > 3 && sleepingTimes < 5) {
+      return Demoji.neutral_face;
     }
     if (sleepingTimes >= 5 && sleepingTimes <= 10) {
-      return Icons.star;
+      return Demoji.tired_face;
     }
-    return AntDesign.user;
+    if (sleepingTimes >= 10 && sleepingTimes <= 15) {
+      return Demoji.drooling_face;
+    }
+    if (sleepingTimes > 15) {
+      return Demoji.sleeping;
+    }
+    return Demoji.slightly_smiling_face;
   }
 
   // void loadCurrentCount() async {
@@ -87,10 +93,9 @@ class _EmployeeDetailsState extends State<EmployeeDetails> {
               child: CircleAvatar(
                 maxRadius: 40.0,
                 backgroundColor: Colors.white,
-                child: Icon(
+                child: Text(
                   emojiFace(sleepingTimes),
-                  color: lightBgColor,
-                  size: 50.0,
+                  style: TextStyle(fontSize: 50.0),
                 ),
               ),
             ),

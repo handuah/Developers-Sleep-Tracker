@@ -1,6 +1,7 @@
 import 'package:bluespace_sleepers_app/utils/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
+import 'package:demoji/demoji.dart';
 // import 'package:shared_preferences/shared_preferences.dart';
 
 class EmployeeDetails extends StatefulWidget {
@@ -26,6 +27,9 @@ class EmployeeDetails extends StatefulWidget {
 
 class _EmployeeDetailsState extends State<EmployeeDetails> {
   int _sleepAdded = 0;
+  late int sleepingTimes = 0;
+
+  bool isTapped = false;
 
   void sleepIncrement() async {
     // SharedPreferences preference = await SharedPreferences.getInstance();
@@ -33,8 +37,19 @@ class _EmployeeDetailsState extends State<EmployeeDetails> {
       // sleepingTimes =
       //     (preference.getInt('power_naps') ?? widget.sleepCount) + 1;
       // preference.setInt('power_naps', sleepingTimes);
+      isTapped = true;
       _sleepAdded++;
     });
+  }
+
+  IconData emojiFace(int sleepingTimes) {
+    if (sleepingTimes > 0 && sleepingTimes < 5) {
+      return Icons.favorite;
+    }
+    if (sleepingTimes >= 5 && sleepingTimes <= 10) {
+      return Icons.star;
+    }
+    return AntDesign.user;
   }
 
   // void loadCurrentCount() async {
@@ -43,8 +58,6 @@ class _EmployeeDetailsState extends State<EmployeeDetails> {
   //     sleepingTimes = (preference.getInt('power_naps') ?? widget.sleepCount);
   //   });
   // }
-
-  late int sleepingTimes = 0;
 
   @override
   void initState() {
@@ -75,7 +88,7 @@ class _EmployeeDetailsState extends State<EmployeeDetails> {
                 maxRadius: 40.0,
                 backgroundColor: Colors.white,
                 child: Icon(
-                  AntDesign.user,
+                  emojiFace(sleepingTimes),
                   color: lightBgColor,
                   size: 50.0,
                 ),

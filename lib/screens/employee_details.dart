@@ -116,9 +116,9 @@ class _EmployeeDetailsState extends State<EmployeeDetails> {
               Colors.redAccent,
               Colors.orange,
             ],
-            stops: [0.6, 0.8],
-            radius: 20.0,
-            center: Alignment.center,
+            stops: [0.5, 0.8],
+            radius: 1.5,
+            center: Alignment.bottomCenter,
           ),
           shape: BoxShape.circle,
         ),
@@ -140,11 +140,14 @@ class _EmployeeDetailsState extends State<EmployeeDetails> {
       position: DecorationPosition.background,
       decoration: const BoxDecoration(
         shape: BoxShape.circle,
-        gradient: LinearGradient(
-          colors: [Colors.green, Colors.yellow],
-          stops: [0.5, 0.8],
-          begin: Alignment.centerLeft,
-          end: Alignment.centerRight,
+        gradient: RadialGradient(
+          colors: [
+            Colors.blue,
+            Colors.blueAccent,
+          ],
+          stops: [0.5, 0.7],
+          radius: 1.0,
+          center: Alignment.bottomCenter,
         ),
       ),
       child: ElevatedButton(
@@ -157,7 +160,7 @@ class _EmployeeDetailsState extends State<EmployeeDetails> {
           padding: const EdgeInsets.all(30.0),
           primary: Colors.transparent,
           shape: const CircleBorder(),
-          elevation: 5.0,
+          elevation: 12.0,
         ),
       ),
     );

@@ -140,12 +140,25 @@ class _EmployeeDetailsState extends State<EmployeeDetails> {
           shape: BoxShape.circle,
         ),
         child: Center(
-          child: Text(
-            sleepingTimes.toString(),
-            style: bodyText.copyWith(
-              color: Colors.white,
-              fontSize: 50.0,
-            ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Text(
+                sleepingTimes.toString(),
+                style: bodyText.copyWith(
+                  color: Colors.white,
+                  fontSize: 50.0,
+                ),
+              ),
+              Text(
+                'Power Naps!',
+                style: bodyText.copyWith(
+                  color: Colors.white,
+                  fontSize: 12.0,
+                ),
+              ),
+            ],
           ),
         ),
       ),

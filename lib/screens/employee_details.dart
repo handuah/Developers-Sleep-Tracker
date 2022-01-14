@@ -1,7 +1,7 @@
 import 'package:bluespace_sleepers_app/utils/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+// import 'package:shared_preferences/shared_preferences.dart';
 
 class EmployeeDetails extends StatefulWidget {
   final String employeeID;
@@ -28,35 +28,35 @@ class _EmployeeDetailsState extends State<EmployeeDetails> {
   int _sleepAdded = 0;
 
   void sleepIncrement() async {
-    SharedPreferences preference = await SharedPreferences.getInstance();
+    // SharedPreferences preference = await SharedPreferences.getInstance();
     setState(() {
-      sleepingTimes =
-          (preference.getInt('power_naps') ?? widget.sleepCount) + 1;
-      preference.setInt('power_naps', sleepingTimes);
-      // _sleepAdded++;
+      // sleepingTimes =
+      //     (preference.getInt('power_naps') ?? widget.sleepCount) + 1;
+      // preference.setInt('power_naps', sleepingTimes);
+      _sleepAdded++;
     });
   }
 
-  void loadCurrentCount() async {
-    SharedPreferences preference = await SharedPreferences.getInstance();
-    setState(() {
-      sleepingTimes = (preference.getInt('power_naps') ?? widget.sleepCount);
-    });
-  }
+  // void loadCurrentCount() async {
+  //   SharedPreferences preference = await SharedPreferences.getInstance();
+  //   setState(() {
+  //     sleepingTimes = (preference.getInt('power_naps') ?? widget.sleepCount);
+  //   });
+  // }
 
   late int sleepingTimes = 0;
 
   @override
   void initState() {
     super.initState();
-    loadCurrentCount();
-    // sleepingTimes = widget.sleepCount;
+    // loadCurrentCount();
+    sleepingTimes = widget.sleepCount;
   }
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    // sleepingTimes = widget.sleepCount + _sleepAdded;
+    sleepingTimes = widget.sleepCount + _sleepAdded;
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: appBar(),

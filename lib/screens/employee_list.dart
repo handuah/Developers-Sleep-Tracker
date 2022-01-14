@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:bluespace_sleepers_app/screens/employee_details.dart';
-import 'package:bluespace_sleepers_app/utils/json_data.dart';
+// import 'package:bluespace_sleepers_app/utils/json_data.dart';
 import 'package:bluespace_sleepers_app/utils/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
@@ -116,7 +116,7 @@ class _EmployeeListState extends State<EmployeeList> {
   Container employeeList() {
     Size size = MediaQuery.of(context).size;
     return Container(
-      height: size.height * 0.7,
+      height: size.height * 0.72,
       width: size.width,
       // color: Colors.blue,
       child: GridView.builder(

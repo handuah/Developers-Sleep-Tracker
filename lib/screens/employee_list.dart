@@ -119,66 +119,72 @@ class _EmployeeListState extends State<EmployeeList> {
       height: size.height * 0.72,
       width: size.width,
       // color: Colors.blue,
-      child: GridView.builder(
-        padding: EdgeInsets.symmetric(
-            vertical: size.height * 0.01, horizontal: size.width * 0.01),
-        itemCount: employees.length,
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-          crossAxisSpacing: 10.0,
-          mainAxisSpacing: 20.0,
-        ),
-        itemBuilder: (context, index) {
-          return InkWell(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => EmployeeDetails(
-                    employeeID: employees[index]['_id'],
-                    employeeFName: employees[index]['name'],
-                    // employeeLName: employees[index]['last_name'],
-                    // employeeAge: employees[index]['age'],
-                    employeeRole: employees[index]['role'],
-                    sleepCount:
-                        int.tryParse(employees[index]['powerNaps']) ?? 0,
+      child: employees.isNotEmpty
+          ? GridView.builder(
+              padding: EdgeInsets.symmetric(
+                  vertical: size.height * 0.01, horizontal: size.width * 0.01),
+              itemCount: employees.length,
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                crossAxisSpacing: 10.0,
+                mainAxisSpacing: 20.0,
+              ),
+              itemBuilder: (context, index) {
+                return InkWell(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => EmployeeDetails(
+                          employeeID: employees[index]['_id'],
+                          employeeFName: employees[index]['name'],
+                          // employeeLName: employees[index]['last_name'],
+                          // employeeAge: employees[index]['age'],
+                          employeeRole: employees[index]['role'],
+                          sleepCount:
+                              int.tryParse(employees[index]['powerNaps']) ?? 0,
+                        ),
+                      ),
+                    );
+                  },
+                  child: Container(
+                    height: size.height * 0.2,
+                    width: size.width / 2,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10.0),
+                      color: bgColor,
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Icon(
+                          AntDesign.user,
+                          color: lightBgColor,
+                          size: 80.0,
+                        ),
+                        SizedBox(
+                          height: size.height * 0.03,
+                        ),
+                        Text(
+                          employees[index]['name'],
+                          style: bodyText.copyWith(
+                              fontSize: 20.0, color: Colors.white),
+                        ),
+                        SizedBox(
+                          height: size.height * 0.04,
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-              );
-            },
-            child: Container(
-              height: size.height * 0.2,
-              width: size.width / 2,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10.0),
+                );
+              },
+            )
+          : Center(
+              child: CircularProgressIndicator(
                 color: bgColor,
               ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Icon(
-                    AntDesign.user,
-                    color: lightBgColor,
-                    size: 80.0,
-                  ),
-                  SizedBox(
-                    height: size.height * 0.03,
-                  ),
-                  Text(
-                    employees[index]['name'],
-                    style:
-                        bodyText.copyWith(fontSize: 20.0, color: Colors.white),
-                  ),
-                  SizedBox(
-                    height: size.height * 0.04,
-                  ),
-                ],
-              ),
             ),
-          );
-        },
-      ),
     );
   }
 }

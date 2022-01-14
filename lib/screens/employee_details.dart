@@ -32,9 +32,18 @@ class _EmployeeDetailsState extends State<EmployeeDetails> {
     });
   }
 
+  late int sleepingTimes;
+
+  @override
+  void initState() {
+    super.initState();
+    sleepingTimes = widget.sleepCount;
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    sleepingTimes = widget.sleepCount + _sleepAdded;
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: appBar(),
@@ -132,7 +141,7 @@ class _EmployeeDetailsState extends State<EmployeeDetails> {
         ),
         child: Center(
           child: Text(
-            widget.sleepCount.toString() + _sleepAdded.toString(),
+            sleepingTimes.toString(),
             style: bodyText.copyWith(
               color: Colors.white,
               fontSize: 50.0,

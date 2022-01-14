@@ -3,19 +3,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 
 class EmployeeDetails extends StatefulWidget {
-  final int employeeID;
+  final String employeeID;
   final String employeeFName;
-  final String employeeLName;
-  final int employeeAge;
-  final String employeeGender;
+  // final String employeeLName;
+  // final int employeeAge;
+  final String employeeRole;
   final int sleepCount;
   const EmployeeDetails({
     Key? key,
     required this.employeeID,
     required this.employeeFName,
-    required this.employeeLName,
-    required this.employeeAge,
-    required this.employeeGender,
+    // required this.employeeLName,
+    // required this.employeeAge,
+    required this.employeeRole,
     required this.sleepCount,
   }) : super(key: key);
 
@@ -72,7 +72,7 @@ class _EmployeeDetailsState extends State<EmployeeDetails> {
               height: size.height * 0.02,
             ),
             Text(
-              widget.employeeFName + ' ' + widget.employeeLName,
+              widget.employeeFName + ' ' + '( ' + widget.employeeRole + ' )',
               style: bodyText.copyWith(
                 fontSize: 20.0,
                 color: bgColor,

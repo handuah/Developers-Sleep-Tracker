@@ -44,7 +44,7 @@ class _EmployeeDetailsState extends State<EmployeeDetails> {
     });
   }
 
-  late int sleepingTimes;
+  late int sleepingTimes = 0;
 
   @override
   void initState() {

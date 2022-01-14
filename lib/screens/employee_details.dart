@@ -24,6 +24,14 @@ class EmployeeDetails extends StatefulWidget {
 }
 
 class _EmployeeDetailsState extends State<EmployeeDetails> {
+  int _sleepAdded = 0;
+
+  void sleepIncrement() {
+    setState(() {
+      _sleepAdded++;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -124,7 +132,7 @@ class _EmployeeDetailsState extends State<EmployeeDetails> {
         ),
         child: Center(
           child: Text(
-            widget.sleepCount.toString(),
+            widget.sleepCount.toString() + _sleepAdded.toString(),
             style: bodyText.copyWith(
               color: Colors.white,
               fontSize: 50.0,
@@ -155,7 +163,9 @@ class _EmployeeDetailsState extends State<EmployeeDetails> {
           'Tap',
           style: bodyText.copyWith(color: Colors.white),
         ),
-        onPressed: () {},
+        onPressed: () {
+          sleepIncrement();
+        },
         style: ElevatedButton.styleFrom(
           padding: const EdgeInsets.all(30.0),
           primary: Colors.transparent,

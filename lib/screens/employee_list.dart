@@ -1,11 +1,10 @@
 import 'dart:convert';
 
 import 'package:bluespace_sleepers_app/screens/employee_details.dart';
-// import 'package:bluespace_sleepers_app/utils/json_data.dart';
+import 'package:bluespace_sleepers_app/utils/json_data.dart';
 import 'package:bluespace_sleepers_app/utils/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
-import 'package:http/http.dart' as http;
 
 class EmployeeList extends StatefulWidget {
   const EmployeeList({Key? key}) : super(key: key);
@@ -15,31 +14,6 @@ class EmployeeList extends StatefulWidget {
 }
 
 class _EmployeeListState extends State<EmployeeList> {
-  List employees = [];
-
-  // Employee list function
-  Future getAllEmployees() async {
-    var res = await http.get(
-      Uri.parse("https://powernap.herokuapp.com/all_devs"),
-    );
-    var jsonbody = res.body;
-    var jsonData = jsonDecode(jsonbody);
-
-    setState(() {
-      employees = jsonData;
-    });
-    // ignore: avoid_print
-    // print(cryptocurrencies);
-    return employees;
-  }
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    getAllEmployees();
-  }
-
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -119,11 +93,11 @@ class _EmployeeListState extends State<EmployeeList> {
       height: size.height * 0.72,
       width: size.width,
       // color: Colors.blue,
-      child: employees.isNotEmpty
+      child: employeeData.isNotEmpty
           ? GridView.builder(
               padding: EdgeInsets.symmetric(
                   vertical: size.height * 0.01, horizontal: size.width * 0.01),
-              itemCount: employees.length,
+              itemCount: employeeData.length,
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
                 crossAxisSpacing: 10.0,
@@ -136,13 +110,12 @@ class _EmployeeListState extends State<EmployeeList> {
                       context,
                       MaterialPageRoute(
                         builder: (context) => EmployeeDetails(
-                          employeeID: employees[index]['_id'],
-                          employeeFName: employees[index]['name'],
-                          // employeeLName: employees[index]['last_name'],
-                          // employeeAge: employees[index]['age'],
-                          employeeRole: employees[index]['role'],
-                          sleepCount:
-                              int.tryParse(employees[index]['powerNaps']) ?? 0,
+                          employeeID: employeeData[index]['employee_id'],
+                          employeeFName: employeeData[index]['first_name'],
+                          // employeeLName: employeeData[index]['last_name'],
+                          // employeeAge: employeeData[index]['age'],
+                          employeeRole: employeeData[index]['role'],
+                          sleepCount: employeeData[index]['sleep_count'],
                         ),
                       ),
                     );
@@ -167,7 +140,7 @@ class _EmployeeListState extends State<EmployeeList> {
                           height: size.height * 0.03,
                         ),
                         Text(
-                          employees[index]['name'],
+                          employeeData[index]['first_name'],
                           style: bodyText.copyWith(
                               fontSize: 20.0, color: Colors.white),
                         ),

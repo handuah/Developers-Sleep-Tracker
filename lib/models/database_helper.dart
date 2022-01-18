@@ -35,9 +35,12 @@ class DatabaseHelper {
     await db.execute('''
     CREATE TABLE $employeeTable (
       employee_id $idType,
-      name $textType,
-      role $textType,     
-      power_nap $intType,    
+      first_name $textType,
+      last_name $textType,
+      role $textType,
+      age $intType,
+      gender $textType,     
+      sleep_count $intType,    
     )
     ''');
 

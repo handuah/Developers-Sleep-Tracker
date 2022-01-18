@@ -5,7 +5,7 @@ import 'package:demoji/demoji.dart';
 // import 'package:shared_preferences/shared_preferences.dart';
 
 class EmployeeDetails extends StatefulWidget {
-  final String employeeID;
+  final int employeeID;
   final String employeeFName;
   // final String employeeLName;
   // final int employeeAge;

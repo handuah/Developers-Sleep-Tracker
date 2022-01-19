@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:bluespace_sleepers_app/models/database_helper.dart';
+import 'package:bluespace_sleepers_app/models/employee_model.dart';
 import 'package:bluespace_sleepers_app/screens/employee_details.dart';
 import 'package:bluespace_sleepers_app/utils/json_data.dart';
 import 'package:bluespace_sleepers_app/utils/styles.dart';
@@ -14,6 +16,20 @@ class EmployeeList extends StatefulWidget {
 }
 
 class _EmployeeListState extends State<EmployeeList> {
+  // List<Employee> employeeDetails = [];
+
+  // Future allEmployees() async {
+  //   employeeDetails = await DatabaseHelper.instance.getEmployees();
+  //   setState(() {}); //adding this ensures that data on the screen is updated
+  // }
+
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   DatabaseHelper.instance.initDB(employeeTable);
+  //   allEmployees();
+  // }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;

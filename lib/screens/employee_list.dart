@@ -91,7 +91,7 @@ class _EmployeeListState extends State<EmployeeList> {
           color: bgColor.withOpacity(0.5),
         ),
         label: Text(
-          'Search Games',
+          'Search Developer',
           style: bodyText.copyWith(
               color: bgColor.withOpacity(0.5), fontSize: 14.0),
         ),

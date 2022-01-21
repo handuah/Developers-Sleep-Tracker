@@ -1,0 +1,74 @@
+[
+    {
+    "employee_id": 1,
+    "first_name": "Bennet",
+    "last_name": "Dumashie",
+    "role": "Backend",
+    "age": 29,
+    "gender": "Male",
+    "sleep_count": 0
+  },
+  {
+    "employee_id": 2,
+    "first_name": "Kweku",
+    "last_name": "Bright",
+    "role": "Backend",
+    "age": 35,
+    "gender": "Male",
+    "sleep_count": 0
+  },
+  {
+    "employee_id": 3,
+    "first_name": "Nii",
+    "last_name": "Darku",
+    "role": "Frontend",
+    "age": 23,
+    "gender": "Male",
+    "sleep_count": 0
+  },
+  {
+    "employee_id": 4,
+    "first_name": "Miriam",
+    "last_name": "Laate",
+    "role": "Admin",
+    "age": 26,
+    "gender": "Female",
+    "sleep_count": 0
+  },
+  {
+    "employee_id": 5,
+    "first_name": "Jesus",
+    "last_name": "Lobede",
+    "role": "UI/UX",
+    "age": 29,
+    "gender": "Male",
+    "sleep_count": 0
+  },
+  {
+    "employee_id": 6,
+    "first_name": "Qwophi",
+    "last_name": "Ahwireng",
+    "role": "Backend",
+    "age": 40,
+    "gender": "Male",
+    "sleep_count": 0
+  },
+  {
+    "employee_id": 7,
+    "first_name": "Hannah",
+    "last_name": "Duah",
+    "role": "Frontend",
+    "age": 29,
+    "gender": "Female",
+    "sleep_count": 0
+  },
+  {
+    "employee_id": 8,
+    "first_name": "Abigail",
+    "last_name": "Mensah",
+    "role": "Product Manager",
+    "age": 27,
+    "gender": "Female",
+    "sleep_count": 0
+  }
+]

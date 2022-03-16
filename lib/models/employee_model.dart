@@ -1,4 +1,12 @@
-String employeeTable = 'employees.db';
+import 'dart:convert';
+
+final String employeeTable = 'employees';
+
+List<Employee> employeesFromMap(String str) =>
+    List<Employee>.from(json.decode(str).map((x) => Employee.fromJson(x)));
+
+String employeesToMap(List<Employee> data) =>
+    json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
 class Employee {
   final int? id;
@@ -19,7 +27,7 @@ class Employee {
     required this.powerNap,
   });
 
-  static Employee fromJson(Map<String, Object?> json) => Employee(
+  static Employee fromJson(Map<String, dynamic> json) => Employee(
         id: json['employee_id'] as int?,
         fName: json['first_name'] as String,
         lName: json['last_name'] as String,
@@ -29,7 +37,7 @@ class Employee {
         powerNap: json['sleep_count'] as int,
       );
 
-  Map<String, Object?> toJson() {
+  Map<String, dynamic> toJson() {
     return {
       'employee_id': id,
       'first_name': fName,

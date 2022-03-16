@@ -16,19 +16,19 @@ class EmployeeList extends StatefulWidget {
 }
 
 class _EmployeeListState extends State<EmployeeList> {
-  // List<Employee> employeeDetails = [];
+  List<Employee> employeeDetails = [];
 
-  // Future allEmployees() async {
-  //   employeeDetails = await DatabaseHelper.instance.getEmployees();
-  //   setState(() {}); //adding this ensures that data on the screen is updated
-  // }
+  allEmployees() async {
+    await DatabaseHelper.instance.getEmployees();
+    setState(() {}); //adding this ensures that data on the screen is updated
+  }
 
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   DatabaseHelper.instance.initDB(employeeTable);
-  //   allEmployees();
-  // }
+  @override
+  void initState() {
+    super.initState();
+    DatabaseHelper.instance.initDB('employees.db');
+    allEmployees();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -103,77 +103,34 @@ class _EmployeeListState extends State<EmployeeList> {
     );
   }
 
-  Container employeeList() {
+  employeeList() {
     Size size = MediaQuery.of(context).size;
-    return Container(
-      height: size.height * 0.72,
-      width: size.width,
-      // color: Colors.blue,
-      child: employeeData.isNotEmpty
-          ? GridView.builder(
-              padding: EdgeInsets.symmetric(
-                  vertical: size.height * 0.01, horizontal: size.width * 0.01),
-              itemCount: employeeData.length,
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                crossAxisSpacing: 10.0,
-                mainAxisSpacing: 20.0,
-              ),
-              itemBuilder: (context, index) {
-                return InkWell(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => EmployeeDetails(
-                          employeeID: employeeData[index]['employee_id'],
-                          employeeFName: employeeData[index]['first_name'],
-                          // employeeLName: employeeData[index]['last_name'],
-                          // employeeAge: employeeData[index]['age'],
-                          employeeRole: employeeData[index]['role'],
-                          sleepCount: employeeData[index]['sleep_count'],
-                        ),
-                      ),
-                    );
+    return FutureBuilder(
+        future: DatabaseHelper.instance.getEmployees(),
+        builder:
+            (BuildContext context, AsyncSnapshot<List<Employee>> snapshot) {
+          switch (snapshot.connectionState) {
+            case ConnectionState.none:
+            case ConnectionState.waiting:
+              return Center(
+                child: CircularProgressIndicator(
+                  color: bgColor,
+                ),
+              );
+            case ConnectionState.active:
+              return Text('snapshot active');
+            case ConnectionState.done:
+              return SizedBox(
+                height: size.height * 0.72,
+                width: size.width,
+                child: ListView.builder(
+                  itemBuilder: (BuildContext context, int index) {
+                    return Text(snapshot.data![index].fName);
                   },
-                  child: Container(
-                    height: size.height * 0.2,
-                    width: size.width / 2,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10.0),
-                      color: bgColor,
-                    ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Icon(
-                          AntDesign.user,
-                          color: lightBgColor,
-                          size: 80.0,
-                        ),
-                        SizedBox(
-                          height: size.height * 0.03,
-                        ),
-                        Text(
-                          employeeData[index]['first_name'],
-                          style: bodyText.copyWith(
-                              fontSize: 20.0, color: Colors.white),
-                        ),
-                        SizedBox(
-                          height: size.height * 0.04,
-                        ),
-                      ],
-                    ),
-                  ),
-                );
-              },
-            )
-          : Center(
-              child: CircularProgressIndicator(
-                color: bgColor,
-              ),
-            ),
-    );
+                  itemCount: snapshot.data!.length,
+                ),
+              );
+          }
+        });
   }
 }
